@@ -1,0 +1,8 @@
+/* Keep playlists using the default single-column list */
+#itemDetailPage:has(.detailButton[data-type="Playlist"])
+  .childrenItemsContainer.itemsContainer.padded-right.vertical-list,
+#itemDetailPage:has(.detailButton[data-type="Playlist"])
+  .vertical-list.padded-right.itemsContainer {
+  display: block !important;
+  grid-template-columns: unset !important;
+}
