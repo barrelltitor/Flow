@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name         Flow for Jelyfin
-@version      20250401.04.01
+@version      20261030.1
 @namespace    https://userstyles.world/user/LitCastVlog
 @description  Plex-inspired theme for Jellyfin's WebUI (Based on Scyfin)
 @author       LitCastVlog
@@ -23,7 +23,7 @@
     --rounded-cards: 5px;
     --blur: 2px;
     --alt-accent-color: #ffffff20;
-    --alt-accent-color-nontsp: #ffffffe0
+    --alt-accent-color-nontsp: #ffffffe0;
 
     /* Alternate accents*/
     --primary-alt1: rgb(calc(var(--primary-r) - 30), calc(var(--primary-g) - 30), calc(var(--primary-b) - 30), 1);
@@ -1457,5 +1457,167 @@ input:not(.mdl-slider) {
     border-color: var(--outline-color) !important;
 }
 
+/* BEGIN GENERATED JELLYFIN 12 COMPATIBILITY */
+/* Jellyfin 12 Modern layout. Keep native navigation, focus and menu behavior. */
+:root:has(.MuiAppBar-root) {
+    --jf-palette-primary-main: var(--primary-accent-color);
+    --jf-palette-primary-mainChannel: var(--primary-r) var(--primary-g) var(--primary-b);
+    --jf-palette-primary-dark: var(--secondary-accent-color);
+    --jf-palette-primary-light: var(--primary-accent-color);
+    --jf-palette-secondary-main: var(--primary-accent-color);
+    --jf-palette-secondary-mainChannel: var(--primary-r) var(--primary-g) var(--primary-b);
+    --jf-palette-background-default: var(--primary-background-color);
+    --jf-palette-background-paper: var(--secondary-background-color);
+    --jf-palette-background-defaultImage: none;
+    --jf-palette-AppBar-defaultBg: var(--secondary-background-color);
+    --jf-palette-AppBar-transparentBg: var(--secondary-background-color);
+    --jf-palette-text-primary: #f5f5f5;
+    --jf-palette-text-secondary: #d1d1d1;
+    --jf-card-borderRadius: var(--rounded-cards);
 }
 
+/* Legacy scrollers use negative margins; contain them inside the Modern content viewport. */
+body:has(header.MuiAppBar-root) main {
+    min-width: 0;
+    overflow-x: clip;
+}
+
+/* Modern wraps legacy pages inside <main>; the old 250px margin would double-offset them. */
+body:has(header.MuiAppBar-root) main .libraryPage:not(#editItemMetadataPage),
+body:has(header.MuiAppBar-root) main .quickConnectSettingsContainer {
+    margin-inline: 0 !important;
+}
+
+/* OffsetAppBar measures its own height. Do not add the legacy header padding. */
+body:has(header.MuiAppBar-root) header.MuiAppBar-root {
+    padding: 0 !important;
+    background: var(--secondary-background-color) !important;
+    backdrop-filter: none !important;
+}
+
+body:has(header.MuiAppBar-root) .MuiDrawer-paper {
+    background: var(--secondary-background-color) !important;
+    color: var(--jf-palette-text-primary);
+}
+
+body:has(header.MuiAppBar-root) .MuiDrawer-paper .MuiListItemButton-root {
+    min-height: 44px;
+    height: auto !important;
+    padding: 10px 16px !important;
+    border-radius: var(--rounded-cards);
+}
+
+body:has(header.MuiAppBar-root) .MuiDrawer-paper .MuiListItemText-primary {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 899px) {
+    body:has(header.MuiAppBar-root) .MuiDrawer-paper:has(a[href$="/home?tab=1"]) {
+        width: 280px;
+        max-width: calc(100vw - 32px);
+    }
+}
+
+/* Match Jellyfin's md breakpoint. On mobile, keep its actual swipeable drawer. */
+@media (min-width: 900px) {
+    /* Modern has no desktop drawer. Its existing toolbar stack IS the navigation. */
+    body:has(header.MuiAppBar-root .MuiStack-root > a[href$="/home?tab=1"]) {
+        --flow-sidebar-width: 250px;
+    }
+
+    body:has(header.MuiAppBar-root .MuiStack-root > a[href$="/home?tab=1"]) header.MuiAppBar-root {
+        inset-inline-start: var(--flow-sidebar-width);
+        inset-inline-end: 0;
+        width: calc(100% - var(--flow-sidebar-width));
+        overflow: visible;
+    }
+
+    body:has(header.MuiAppBar-root .MuiStack-root > a[href$="/home?tab=1"]) main {
+        margin-inline-start: var(--flow-sidebar-width);
+        width: calc(100% - var(--flow-sidebar-width)) !important;
+        min-width: 0;
+    }
+
+    header.MuiAppBar-root .MuiToolbar-root > .MuiStack-root:has(> a[href$="/home?tab=1"]) {
+        position: fixed;
+        inset-block: 0;
+        inset-inline-start: 0;
+        width: var(--flow-sidebar-width);
+        height: 100vh;
+        height: 100dvh;
+        box-sizing: border-box;
+        flex-direction: column !important;
+        align-items: stretch;
+        gap: 4px;
+        margin: 0 !important;
+        padding: 24px 12px 5rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: var(--secondary-background-color);
+        border-inline-end: 1px solid #ffffff0a;
+    }
+
+    header.MuiAppBar-root .MuiStack-root:has(> a[href$="/home?tab=1"]) > .MuiButton-root {
+        flex-shrink: 0;
+        justify-content: flex-start;
+        min-height: 44px;
+        margin: 0 !important;
+        padding: 10px 16px;
+        border-radius: var(--rounded-cards);
+        color: #d1d1d1;
+        font-size: 1rem;
+        font-weight: 500;
+        text-align: start;
+        text-transform: none;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: 1.4;
+    }
+
+    header.MuiAppBar-root .MuiStack-root:has(> a[href$="/home?tab=1"]) > .MuiButton-root:first-child {
+        min-height: 52px;
+        margin-bottom: 16px !important;
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+    header.MuiAppBar-root .MuiStack-root:has(> a[href$="/home?tab=1"]) .MuiButton-startIcon {
+        flex-shrink: 0;
+        margin-inline: 0 12px;
+    }
+
+    header.MuiAppBar-root .MuiStack-root:has(> a[href$="/home?tab=1"]) > .MuiButton-root:hover {
+        color: #fff;
+        background: #ffffff0d;
+    }
+
+    header.MuiAppBar-root .MuiStack-root:has(> a[href$="/home?tab=1"]) > .MuiButton-textPrimary {
+        color: var(--primary-accent-color);
+        background: var(--secondary-accent-color);
+    }
+
+    header.MuiAppBar-root .MuiStack-root:has(> a[href$="/home?tab=1"]) > .MuiButton-root:focus-visible {
+        outline: 2px solid var(--primary-accent-color);
+        outline-offset: -2px;
+    }
+
+    body:has(header.MuiAppBar-root .MuiStack-root > a[href$="/home?tab=1"]) .appfooter {
+        margin-inline-start: 0 !important;
+        inset-inline-start: var(--flow-sidebar-width);
+        width: calc(100% - var(--flow-sidebar-width));
+    }
+}
+
+/* The native More menu retains every overflow library; never force a closed portal visible. */
+#user-view-overflow-menu .MuiMenuItem-root {
+    min-height: 44px;
+    max-width: min(26rem, calc(100vw - 32px));
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+#user-view-overflow-menu .MuiListItemText-root {
+    min-width: 0;
+}
+/* END GENERATED JELLYFIN 12 COMPATIBILITY */
+}

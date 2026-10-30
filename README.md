@@ -3,6 +3,24 @@
 # **Plex-inspired theme for Jellyfin WebUI**
 ### **Built on [Scyfin](https://github.com/loof2736/scyfin/), [Ultrachromic](https://github.com/CTalvio/Ultrachromic)**
 
+## Jellyfin 12 support
+
+This branch supports the **Modern layout in Jellyfin 12.4** as well as the existing
+Legacy layout. On desktop (900px and wider), Flow arranges Jellyfin's native toolbar
+navigation as a fixed sidebar. Extra libraries remain in the native **More** menu;
+mobile keeps Jellyfin's swipeable drawer. No JavaScript injection is required.
+
+The main, desktop/mobile one-liners and Stylus bundle include the compatibility
+rules. Existing accent themes and the `Utils/Playlist*.css` overrides are preserved.
+Use the imports below from this branch, then hard-refresh the web client. The older
+10.11 compatibility stylesheet is still useful for the Legacy layout.
+
+The experimental Drawer Toggle option is for the Legacy layout; Modern retains
+its native responsive navigation and overflow menu.
+
+For maintenance, edit `CSS/ScyFlow-Jellyfin12.css`, then run
+`python scripts/build-compat.py` to update the bundled copies.
+
 [Go to installation](#installation)
 
 Also avaliable as a [Userstyle](https://userstyles.world/style/21576/flow-for-jelyfin)
@@ -20,11 +38,11 @@ Also avaliable as a [Userstyle](https://userstyles.world/style/21576/flow-for-je
 <img src="./images/backdrop_setting.gif" width="100%"/>
 
 ### Base Theme
-`@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-main.css');`
+`@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-main.css');`
 
 
 ### Extras (*smaller cast/crew, etc*) 
-`@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-Extras.css');`
+`@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-Extras.css');`
 
  - B/W Logo (credits: [RoyalxZealot](https://www.steamgriddb.com/logo/128502))
  - Smaller Cast/Crew section
@@ -32,39 +50,39 @@ Also avaliable as a [Userstyle](https://userstyles.world/style/21576/flow-for-je
 
 ### Options (Add these after/under the base theme)
 - Enable Collapsable Drawer/Menu 
-    - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-Drawer-Toggle.css');`
+    - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-Drawer-Toggle.css');`
       <img src="./images/drawer-toggle.gif" width="100%"/>
 - Bigger logo (for High DPI/Jellyfn Media Player)
-    - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-HighDPIExtras.css');`
+    - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-HighDPIExtras.css');`
       <img src="./images/highdpi.png" width="100%"/>
 - Episode Grid (from [Ultrachromic](https://github.com/CTalvio/Ultrachromic))
-    - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-EpisodeGrid.css');`
+    - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-EpisodeGrid.css');`
       <img src="./images/episodegrid_uc.png" width="100%"/>
 - Round Cast/Crew/Guests
-    - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFLow-RoundCastCrew.css');`
+    - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFLow-RoundCastCrew.css');`
       <img src="./images/roundcastcrew.png" width="100%"/>      
 - Themes:
     - Orange
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-Orange.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-Orange.css');`
         - <img src="./images/orange.png" width="100%"/>
     - Pink
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-Pink.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-Pink.css');`
         - <img src="./images/pink.png" width="100%"/>
     - Rainbow
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-Rainbow.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-Rainbow.css');`
         - <img src="./images/rainbow.gif" width="100%"/>
     - Red
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-Red.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-Red.css');`
         - <img src="./images/red.png" width="100%"/>
     - White
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-White.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-White.css');`
         - <img src="./images/white.png" width="100%"/>
     - Blue
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-Blue.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-Blue.css');`
         - <img src="./images/blue.png" width="100%"/>
 
    - Darker icons/accents (Add this after everything else):
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/ScyFlow-Dark.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/ScyFlow-Dark.css');`
    
   # Compatible with Scyfin/Ultrachromic themes:     
     - Seafoam
@@ -75,26 +93,26 @@ Also avaliable as a [Userstyle](https://userstyles.world/style/21576/flow-for-je
         - `@import url('https://cdn.jsdelivr.net/gh/loof2736/scyfin@latest/CSS/theme-snow.css');`
   # Experimental (Works in progress)
     - Episode Grid Outline/Dim on hover
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-EpisodeGrid-outline.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-EpisodeGrid-outline.css');`
         - <img src="./images/episodegrid-outline.gif" width="100%"/>
     - Horizontal-Scroll Episodes
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-Scrollable-Episodes-WIP.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-Scrollable-Episodes-WIP.css');`
         - <img src="./images/sidescroll-episodes-wip.gif" width="100%"/>
     - Horizontal-Scroll Episodes (alt, contorls overlayed)
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-Scrollable-Episodes-ALT.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-Scrollable-Episodes-ALT.css');`
         - <img src="./images/sidescroll-episodes-alt.gif" width="100%"/>
     - Animated Overlay (on Backdrops and Live TV section)
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-AnimatedOverlay.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-AnimatedOverlay.css');`
         - <img src="./images/animatedoverlayprev.gif" width="100%"/>
    - Nyan Progress Bar
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/Themes/NyanProgress.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/Themes/NyanProgress.css');`
         - <img src="./images/nyanprogress.gif" width="100%"/>
    - Left-Aligned Font/ Poster Spacing / Corner Indicators
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-FontTweaks.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-FontTweaks.css');`
         - <img src="./images/FontTweaks.png" width="100%"/>
 
    - # 10.11.x Compatibility (WIP, append after main theme/oneliner)
-        - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-Compatibility.css');`
+        - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-Compatibility.css');`
         - <img src="./images//10.11-home.jpg" width="100%"/>
         - <img src="./images//10.11-detail-overview.jpg" width="100%"/>
         - <img src="./images//10.11-music-details.jpg" width="100%"/>
@@ -105,20 +123,20 @@ Also avaliable as a [Userstyle](https://userstyles.world/style/21576/flow-for-je
 ### **Installation:**
 
 ### Easy install (one-liner) 
-`@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-oneliner.css');` 
+`@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-oneliner.css');`
 
 ***10.11.x Compatibility (WIP, append after main theme/oneliner)***:
 
-`@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-Compatibility.css');`
+`@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-Compatibility.css');`
 
-**(Mobile/Android one-liner)**: `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-oneliner-mobile.css');` 
+**(Mobile/Android one-liner)**: `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-oneliner-mobile.css');`
 
 
  <img src="./images/ios.gif" width="60%"/><img src="./images/android.gif"  height="8%"/>
 - **Mobile/App fixes:** *if the logo is too big or doesn't apply (iOS, Android), append this line as well (per client)* 
-  - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-mobilefixes.css');`
+  - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-mobilefixes.css');`
 - **Smaller Screen/Android fixes:** *if the indicators are too big* 
-  - `@import url('https://cdn.jsdelivr.net/gh/LitCastVlog/Flow@main/CSS/ScyFlow-smallscreen-fixes.css');`
+  - `@import url('https://cdn.jsdelivr.net/gh/barrelltitor/Flow@jellyfin-12-compatibility/CSS/ScyFlow-smallscreen-fixes.css');`
 
 
 **Server-wide install:**
