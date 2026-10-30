@@ -7,16 +7,29 @@
 
 This branch supports the **Modern layout in Jellyfin 12.4** as well as the existing
 Legacy layout. On desktop (900px and wider), Flow arranges Jellyfin's native toolbar
-navigation as a fixed sidebar. Extra libraries remain in the native **More** menu;
-mobile keeps Jellyfin's swipeable drawer. No JavaScript injection is required.
+navigation as a fixed sidebar. Mobile keeps Jellyfin's swipeable drawer.
+The CSS works by itself; the optional helper below replaces **More** with individual
+library buttons on desktop.
 
 The main, desktop/mobile one-liners and Stylus bundle include the compatibility
 rules. Existing accent themes and the `Utils/Playlist*.css` overrides are preserved.
 Use the imports below from this branch, then hard-refresh the web client. The older
 10.11 compatibility stylesheet is still useful for the Legacy layout.
 
-The experimental Drawer Toggle option is for the Legacy layout; Modern retains
-its native responsive navigation and overflow menu.
+The experimental Drawer Toggle option is for the Legacy layout.
+
+### Show every library in the desktop sidebar
+
+With Flow's Jellyfin 12 CSS enabled, install the
+[JavaScript Injector plugin](https://github.com/n00bcodr/Jellyfin-JavaScript-Injector)
+and restart Jellyfin once. In the injector's settings, add an enabled custom script
+and paste the contents of [JS/ScyFlow-All-Libraries.js](JS/ScyFlow-All-Libraries.js)
+into its script field. Leave the external URL empty and module mode disabled.
+Save, then refresh the browser. External script URLs do not need to be enabled.
+
+The helper uses Jellyfin's existing library links, including their order, icons,
+and selected state. The sidebar scrolls when needed. Mobile navigation stays native;
+disabling the script and refreshing restores the **More** menu.
 
 For maintenance, edit `CSS/ScyFlow-Jellyfin12.css`, then run
 `python scripts/build-compat.py` to update the bundled copies.
